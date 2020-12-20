@@ -348,3 +348,13 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Virtualenv
+.venv/
+venv/
+.virtualenv/
+virtualenv/
+
+# Files
+base_csv/*
+output_files/*
