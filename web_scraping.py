@@ -1,5 +1,4 @@
 import requests
-from utils import FileUtils
 
 class WebScraping:
     def scraping(self, link: str, course:str):
@@ -9,16 +8,19 @@ class WebScraping:
         try: 
             request = requests.get(link)
             header = request.headers
-
+            
             if 'X-Cache' in header.keys():
                 if 'Error from cloudfront'.lower() in header['X-Cache'].lower():
                     linkType = 'error'
                     message = 'Não foi possível acessar o link fornecido'
                     
             elif 'X-Cache'.lower() in header.keys():
-                 if 'Error from cloudfront'.lower() in header['X-Cache'.lower()].lower():
+                if 'Error from cloudfront'.lower() in header['X-Cache'.lower()].lower():
                     linkType = 'error'
                     message = 'Não foi possível acessar o link fornecido'
+            elif request.status_code != 200:
+                linkType = 'error'
+                message = 'Não foi possível acessar o link fornecido'
         except:
             if link != '':
                 linkType = 'invalid'
