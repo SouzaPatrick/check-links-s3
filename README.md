@@ -16,6 +16,17 @@ Sendo assim tive a ideia de criar esse script para fazer essa checagem.
 
 ---
 
+### Antes de iniciar a aplicação crie 2 pastas na raiz do projeto:
+- base_csv
+- output_files
+
+> base_csv -> Onde serão colocados os arquivos csv de leitura
+> output_files -> A paste deve estar vazia, sera onde serão alocados os arquivos processados pelo código
+
+#### Obs: A pasta exemple_files_csv possui um arquivo base
+
+---
+
 ### Inicializando a aplicacao
 Passo 1: Crie um ambiente virtual para nao comprometer suas bibliotecas python (Projeto em Python 3):
 

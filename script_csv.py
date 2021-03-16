@@ -1,50 +1,50 @@
-    # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-    '''
-        Fazer a leitura do csv e deixalo dentro de um dicionario
-    '''
-    import os
-    import csv  
+'''
+    Fazer a leitura do csv e deixalo dentro de um dicionario
+'''
+import os
+import csv  
 
-    class CSV_Read:
-        pathFile = ''
+class CSV_Read:
+    pathFile = ''
 
-        def __init__(self, pathFile: str):
-            #Insere o nome do arquivo
-            self.pathFile = pathFile
-        
-        def clear(self, row: dict):
-            #Retira a / no final da unidade
-            row['UNIDADE'] = row['UNIDADE'].replace('/', '')
+    def __init__(self, pathFile: str):
+        #Insere o nome do arquivo
+        self.pathFile = pathFile
+    
+    def clear(self, row: dict):
+        #Retira a / no final da unidade
+        row['UNIDADE'] = row['UNIDADE'].replace('/', '')
 
-            return row
+        return row
 
-        
-        def read_file(self):
-            listReader = []
-            with open(self.pathFile, mode='r',  encoding="utf8") as csvFile:
-                csvReader = csv.DictReader(csvFile)
+    
+    def read_file(self):
+        listReader = []
+        with open(self.pathFile, mode='r',  encoding="utf8") as csvFile:
+            csvReader = csv.DictReader(csvFile)
 
-                for row in csvReader:
-                    row = self.clear(row)
-                    filename, fileExtension = os.path.splitext(row['OBJETO'])
-                    #Retirava o doc no momento da leitura pois eram arquivos que nao queria analizar
-                    # if '.doc' in fileExtension:
-                    #     continue
-                    listReader.append(row)
-                return listReader
+            for row in csvReader:
+                row = self.clear(row)
+                filename, fileExtension = os.path.splitext(row['OBJETO'])
+                #Retirava o doc no momento da leitura pois eram arquivos que nao queria analizar
+                # if '.doc' in fileExtension:
+                #     continue
+                listReader.append(row)
+            return listReader
 
-    class CSV_Write:
-        def __init__(self, pathFile: str):
-            #Insere o nome do arquivo
-            self.pathFile = pathFile
+class CSV_Write:
+    def __init__(self, pathFile: str):
+        #Insere o nome do arquivo
+        self.pathFile = pathFile
 
-        #Escreve o arquivo csv
-        def write(self, dictData: dict) -> None:
-            with open(self.pathFile, mode='w',  encoding="utf8", newline='') as csvFile:
-                csvWrite = csv.writer(csvFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                csvWrite.writerow(['Curso', 'Link'])      
-                for course in dictData.keys():
-                    for dataCourse in dictData[course]:
-                        csvWrite.writerow([course, dataCourse['link']])
-        
+    #Escreve o arquivo csv
+    def write(self, dictData: dict) -> None:
+        with open(self.pathFile, mode='w',  encoding="utf8", newline='') as csvFile:
+            csvWrite = csv.writer(csvFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csvWrite.writerow(['Curso', 'Link'])      
+            for course in dictData.keys():
+                for dataCourse in dictData[course]:
+                    csvWrite.writerow([course, dataCourse['link']])
+    
