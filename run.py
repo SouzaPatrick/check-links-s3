@@ -40,6 +40,8 @@ for filename in baseFiles:
         numberItems = len(listReader)
         with progressbar.ProgressBar(max_value=numberItems) as bar:
             for indice, item in enumerate(listReader):
+                # if 'questionario' in item['OBJETO'].lower():
+                #     continue
                 linkType, link, course, message = webscraping.scraping(link=item['LINK'], course=item['CURSO'])
 
                 if linkType == 'success':
